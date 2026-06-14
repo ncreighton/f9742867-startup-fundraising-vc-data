@@ -1,2 +1,116 @@
-# f9742867-startup-fundraising-vc-data
-You have a winning pitch deck, but your fundraising data is a mess. VCs smell bad data in seconds. That's why we built the Startup Fundraising &amp; VC Data Validation and Enrichment API.  This API automatically validates and enriches your startup’s key fundraising metrics—ARR, growth rate, churn, and more—by cross-referencing multiple authoritative so
+# Startup Fundraising & VC Data Validation and Enrichment API
+
+> Validate, clean, and enrich Startup Fundraising & VC data with industry-specific rules and lookups. Domain expertise baked into every API call.
+
+## Features
+
+- Full REST API
+
+## Quick Start
+
+```bash
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Configure environment
+cp .env.example .env
+# Edit .env with your settings
+
+# 3. Run locally
+uvicorn main:app --reload --port 8000
+
+# 4. View interactive docs
+open http://localhost:8000/docs
+```
+
+## Docker Deployment
+
+```bash
+# Build and run
+docker compose up -d
+
+# Check health
+curl http://localhost:8000/health
+```
+
+## Authentication
+
+Get a token first:
+```bash
+curl -X POST "http://localhost:8000/auth/token?username=admin&password=admin123"
+```
+
+Use the token in subsequent requests:
+```bash
+curl -H "Authorization: Bearer YOUR_TOKEN" http://localhost:8000/items
+```
+
+## API Endpoints
+
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/health` | System health |
+| POST | `/auth/token` | Get JWT token |
+| GET | `/items` | List all items |
+| POST | `/items` | Create item |
+| GET | `/items/{id}` | Get item |
+| PATCH | `/items/{id}` | Update item |
+| DELETE | `/items/{id}` | Delete item |
+| GET | `/stats` | API statistics |
+
+Full interactive docs: `http://localhost:8000/docs`
+
+## Rate Limits
+
+| Endpoint | Limit |
+|----------|-------|
+| `/auth/token` | 10/minute |
+| `GET /items` | 60/minute |
+| `POST /items` | 30/minute |
+| `DELETE /items` | 20/minute |
+
+## Running Tests
+
+```bash
+pip install pytest httpx
+pytest tests/ -v
+```
+
+## Production Notes
+
+- Change `SECRET_KEY` in `.env` before deploying
+- Replace in-memory `_db` with a real database
+- Add proper user management to `auth.py`
+- Configure `ALLOWED_ORIGINS` for CORS
+- Use Nginx/Traefik as reverse proxy
+
+## License
+
+MIT
+
+
+---
+
+## Free vs Pro
+
+| Feature | Free | Pro |
+|---------|:----:|:---:|
+| 100 requests/day | Yes | Yes |
+| Standard endpoints | Yes | Yes |
+| JSON responses | Yes | Yes |
+| Unlimited requests | - | Yes |
+| Premium endpoints | - | Yes |
+| Batch processing | - | Yes |
+| Webhook notifications | - | Yes |
+| SLA guarantee | - | Yes |
+| Priority support | - | Yes |
+
+### Upgrade to Pro
+
+Get the full version with all premium features, priority support, and lifetime updates.
+
+**[Get Pro Version](https://buy.stripe.com/9B64gzh1B0bW5tu7jCcZc0A)**
+
+- [Buy Now (Stripe)](https://buy.stripe.com/9B64gzh1B0bW5tu7jCcZc0A)
+- [Buy on Gumroad](https://summitpublishing.gumroad.com/l/saxtvr)
+
